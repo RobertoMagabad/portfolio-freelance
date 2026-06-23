@@ -4,3 +4,142 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Folder Institucional – Intelis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #0a1628;
+    color: #ffffff;
+  }
+
+  @media print {
+    body { background: #0a1628; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { page-break-after: always; }
+    .screen-note { display: none; }
+  }
+
+  .screen-note { background: #1e3a5f; color: #4FC3F7; text-align: center; padding: 12px; font-size: 13px; letter-spacing: 1px; }
+  .page { width: 100%; }
+  .folder-front { display: grid; grid-template-columns: 1fr 1fr 1fr; min-height: 100vh; }
+  .panel-cover { background: linear-gradient(160deg, #0d1b2a 0%, #1a2e45 100%); display: flex; flex-direction: column; justify-content: space-between; padding: 48px 36px; border-right: 1px solid rgba(79,195,247,0.15); position: relative; overflow: hidden; }
+  .cover-label { font-size: 11px; font-weight: 600; letter-spacing: 4px; color: #4FC3F7; text-transform: uppercase; }
+  .cover-logo { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+  .logo-icon { width: 64px; height: 64px; }
+  .cover-name { font-size: 52px; font-weight: 900; line-height: 1; letter-spacing: -1px; }
+  .cover-name span { color: #4FC3F7; }
+  .cover-tagline { font-size: 12px; letter-spacing: 3px; color: #4FC3F7; text-transform: uppercase; opacity: 0.85; margin-top: 4px; }
+  .cover-divider { width: 48px; height: 3px; background: #4FC3F7; margin: 20px 0; border-radius: 2px; }
+  .cover-desc { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.7); }
+  .cover-contact { font-size: 12px; color: #4FC3F7; letter-spacing: 1px; }
+  .panel-mid { background: linear-gradient(160deg, #111f30 0%, #0d1b2a 100%); padding: 48px 36px; border-right: 1px solid rgba(79,195,247,0.15); display: flex; flex-direction: column; gap: 28px; }
+  .panel-title { font-size: 24px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
+  .panel-line { width: 100%; height: 1px; background: linear-gradient(to right, #4FC3F7, transparent);
+    margin-bottom: 8px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(79,195,247,0.15);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .card-icon { font-size: 22px; margin-bottom: 10px; }
+  .card-title { font-size: 14px; font-weight: 700; color: #4FC3F7; margin-bottom: 8px; }
+  .card-text { font-size: 12px; line-height: 1.65; color: rgba(255,255,255,0.65); }
+  .panel-right { background: linear-gradient(160deg, #0d1b2a 0%, #111f30 100%); padding: 48px 36px; display: flex; flex-direction: column; gap: 20px; }
+  .badge { display: inline-block; background: rgba(79,195,247,0.12); border: 1px solid rgba(79,195,247,0.3); border-radius: 20px; padding: 4px 14px; font-size: 11px; font-weight: 600; color: #4FC3F7; letter-spacing: 1px; margin-bottom: 6px; }
+  .folder-back { display: grid; grid-template-columns: 1fr 1fr 1fr; min-height: 100vh; border-top: 2px solid rgba(79,195,247,0.1); }
+  .panel-dark { background: linear-gradient(160deg, #0a1628 0%, #0d1b2a 100%); padding: 48px 36px; border-right: 1px solid rgba(79,195,247,0.15); display: flex; flex-direction: column; gap: 20px; }
+  .specialists-list { font-size: 12px; line-height: 1.9; color: rgba(255,255,255,0.65); }
+  .specialists-list strong { color: #4FC3F7; display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-top: 14px; margin-bottom: 2px; }
+  .panel-ctc { background: linear-gradient(160deg, #111f30 0%, #0a1628 100%); padding: 48px 36px; border-right: 1px solid rgba(79,195,247,0.15); display: flex; flex-direction: column; gap: 18px; }
+  .highlight-number { font-size: 56px; font-weight: 900; color: #4FC3F7; line-height: 1; margin-bottom: 4px; }
+  .highlight-label { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+  .item-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(79,195,247,0.08); }
+  .item-icon { font-size: 18px; flex-shrink: 0; }
+  .item-text .t1 { font-size: 13px; font-weight: 600; color: #4FC3F7; margin-bottom: 3px; }
+  .item-text .t2 { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .panel-cta { background: linear-gradient(160deg, #0d1b2a 0%, #1a2e45 100%); padding: 48px 36px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+  .cta-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+  .cta-title { font-size: 32px; font-weight: 900; line-height: 1.2; }
+  .cta-title span { color: #4FC3F7; }
+  .cta-sub { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.65); }
+  .cta-divider { width: 40px; height: 3px; background: #4FC3F7; border-radius: 2px; }
+  .cta-contact { display: flex; flex-direction: column; gap: 8px; }
+  .cta-contact-item { font-size: 12px; color: #4FC3F7; letter-spacing: 0.5px; }
+  .pill { background: rgba(79,195,247,0.1); border: 1px solid rgba(79,195,247,0.25); border-radius: 4px; padding: 5px 12px; font-size: 11px; font-weight: 600; color: #4FC3F7; letter-spacing: 1px; }
+  .recognition-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="screen-note">📄 FOLDER INSTITUCIONAL INTELIS - Para imprimir: Ctrl+P - Paisagem - A4 - Imprimir cores de fundo</div>
+<div class="page"><div class="folder-front">
+<div class="panel-cover">
+  <div class="cover-label">Apresentação Institucional</div>
+  <div class="cover-logo">
+    <svg class="logo-icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <rect x="34" y="8" width="12" height="64" rx="4" fill="#4FC3F7"/>
+      <rect x="16" y="8" width="48" height="12" rx="4" fill="#4FC3F7"/>
+      <rect x="16" y="60" width="48" height="12" rx="4" fill="#4FC3F7"/>
+      <circle cx="40" cy="40" r="6" fill="#4FC3F7"/>
+    </svg>
+    <div class="cover-name">INTEL<span>IS</span></div>
+    <div class="cover-tagline">Instituição Científica e Tecnológica</div>
+    <div class="cover-divider"></div>
+    <div class="cover-desc">Entidade sem fins lucrativos declarada de Utilidade Pública Municipal, reconhecida como ICT Privada pelo Marco Legal de Ciência (Lei nº 13.243/16).</div>
+  </div>
+  <div class="cover-contact">contato@intelis.org.br</div>
+</div>
+<div class="panel-mid">
+  <div><div class="panel-title">Quem Somos</div><div class="panel-line"></div></div>
+  <div class="card"><div class="card-icon">🏛️</div><div class="card-title">Utilidade Pública</div><div class="card-text">Declarada pela Lei Ordinária nº 6.367 de 24 de novembro de 2025.</div></div>
+  <div class="card"><div class="card-icon">🤝</div><div class="card-title">Sem Fins Lucrativos</div><div class="card-text">Foco no impacto social, tecnológico e científico, sem finalidade de lucro.</div></div>
+  <div class="card"><div class="card-icon">⚙️</div><div class="card-title">ICT Privada (Art. 5)</div><div class="card-text">Reconhecida pelo Marco Legal de Ciência, Lei nº 13.243/16.</div></div>
+  <div><div class="badge">RECONHECIMENTOS</div><div class="recognition-pills"><div class="pill">FAPESC</div><div class="pill">FINEP</div><div class="pill">Emenda Parlamentar</div></div></div>
+</div>
+<div class="panel-right">
+  <div><div class="panel-title">Eixos de Atuação</div><div class="panel-line"></div></div>
+  <div class="card"><div class="card-icon">🔬</div><div class="card-title">Pesquisa e Inovação</div><div class="card-text">P&D com atuação como Núcleo de Inovação para patentes e transferência tecnológica.</div></div>
+  <div class="card"><div class="card-icon">💻</div><div class="card-title">Tech e Startups</div><div class="card-text">Desenvolvimento de softwares e IA. Atração de investidores-anjo.</div></div>
+  <div class="card"><div class="card-icon">📚</div><div class="card-title">Educação e Cultura</div><div class="card-text">Capacitação técnica e difusão cultural focada no bem-estar.</div></div>
+  <div class="card"><div class="card-icon">🌱</div><div class="card-title">Sustentabilidade</div><div class="card-text">Consultoria ESG e gestão socioambiental.</div></div>
+</div></div></div>
+<div class="page"><div class="folder-back">
+<div class="panel-dark">
+  <div><div class="panel-title">Especialistas</div><div class="panel-line"></div></div>
+  <div class="specialists-list">
+    <strong>💻 TI</strong>Dr. Max Roberto Pereira · Dr. Ademar Schmitz · Esp. Felipe Sandrini
+    <strong>🌿 Meio Ambiente</strong>Dr. Celso Albuquerque Jr. · Dra. Ana Regina Dutra
+    <strong>📖 Educação</strong>Dr. Geovan Guimarães · Dr. Mauri Herdt
+    <strong>🏭 Indústria</strong>Dr. Jonas Schneider · Msc Gean Carlos Fermino
+    <strong>🏥 Saúde</strong>Msc Rodrigo Mendonça · Dra. Monique Michels
+    <strong>⚡ Energia</strong>Msc Cristiano Alencar · Dr. Henri Belan
+    <strong>⚖️ Direito</strong>Rai Bussarelo · Kelly Boneli
+  </div>
+</div>
+<div class="panel-ctc">
+  <div><div class="panel-title">Conselho Técnico-Científico</div><div class="panel-line"></div></div>
+  <div class="item-row"><div class="item-icon">🎯</div><div class="item-text"><div class="t1">Gestão Estratégica</div><div class="t2">Órgão 100% autônomo responsável por PD&I.</div></div></div>
+  <div class="item-row"><div class="item-icon">🎓</div><div class="item-text"><div class="t1">Corpo de Elite</div><div class="t2">Doutores, Mestres e Especialistas.</div></div></div>
+  <div class="item-row"><div class="item-icon">📋</div><div class="item-text"><div class="t1">Vínculo Oficial</div><div class="t2">Portaria da Presidência, mandato 3 anos.</div></div></div>
+  <div style="margin-top:16px"><div class="panel-title" style="font-size:18px">Vantagens</div><div class="panel-line"></div></div>
+  <div class="highlight-number">5-20%</div>
+  <div class="highlight-label">Taxa Administrativa</div>
+  <div class="card" style="padding:14px"><div class="card-text">⚡ Tramitação ágil e simplificada<br><br>📝 Contratação, Termo de Parceria e Colaboração</div></div>
+</div>
+<div class="panel-cta">
+  <div class="cta-main">
+    <div class="cta-title">Faça Parte<br>do <span>Hub</span></div>
+    <div class="cta-divider"></div>
+    <div class="cta-sub">Desenvolva projetos de impacto integrado à nossa rede de excelência.</div>
+    <div class="cta-sub" style="margin-top:8px">A adesão como <strong style="color:#fff">Associado Especialista</strong> é aprovada pela Presidência.</div>
+  </div>
+  <div class="cta-contact">
+    <div class="cta-contact-item"><span>E-mail</span>contato@intelis.org.br</div>
+    <div class="cta-contact-item"><span>Conselho Técnico-Científico</span>Junte-se ao nosso CTC</div>
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(79,195,247,0.15)"><div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase">INTELIS — ICT Privada Lei nº 13.243/16</div></div>
+  </div>
+</div></div></div></body></html>
